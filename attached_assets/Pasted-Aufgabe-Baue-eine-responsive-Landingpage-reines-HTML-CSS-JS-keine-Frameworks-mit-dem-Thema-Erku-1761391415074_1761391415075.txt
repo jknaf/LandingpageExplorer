@@ -1,0 +1,77 @@
+Aufgabe:
+Baue eine responsive Landingpage (reines HTML/CSS/JS, keine Frameworks) mit dem Thema „Erkunde dein KI-Potenzial“. Die Seite bietet eine kostenlose Erst-Analyse an. Zwei Felder (Website-URL, E-Mail) werden beim Absenden per POST an meinen n8n-Webhook gesendet.
+Funktionalität (verbindlich):
+Formular mit Feldern
+input#url (type="url", required)
+input#email (type="email", required)
+optional: Checkbox #consent (required) „Ich stimme der Analyse gemäß Datenschutzhinweis zu.“
+POST an: https://trkmuc.app.n8n.cloud/webhook/data
+Header:
+Content-Type: application/json
+Auth: s_AjvdzQMy7EMQM-
+Body exakt:
+{ "url": "<Wert aus #url>", "email": "<Wert aus #email>" }
+UI-Zustände: „Senden…“, Erfolg („Analyse gestartet“), Fehler („Übermittlung fehlgeschlagen“).
+Client-Validierung (URL/E-Mail).
+Kein Seitenreload; fetch verwenden.
+Inhalte (deutsch, knapp, ohne Floskeln):
+Hero: Headline „Erkunde dein KI-Potenzial.“ Subline: „Kostenlose Analyse: Wo KI in deinem Unternehmen Produktivität, Qualität oder Effizienz steigert.“ Primärer CTA = Formular.
+Nutzen-Abschnitt (3 Karten): Produktivität, Qualität, Effizienz – je 1–2 Bulletpoints.
+Ablauf (3 Schritte): 1) Website senden, 2) KI-Analyse, 3) Maßnahmen & Slides.
+Vertrauen: kleine Liste „Sichere Verarbeitung, DSGVO, jederzeit widerrufbar“.
+FAQ (3–4 kurze Punkte).
+Footer: Impressum/Datenschutz-Links (Platzhalter).
+Designvorgaben (an die beigefügten Style-Boards angelehnt):
+Typografie: „Source Sans Pro“, klare Hierarchie (H1–H5 wie im Typo-Board).
+Spacing: 8-pt-Grid (Abstände in 8/16/24/32 px).
+Farben: Definiere CSS-Variablen; nutze eine kräftige Primär-Blau-Farbe, helles Blau für Hover, Rot für Warnung, Grün für „Erfolg“, Grau-Skala für Flächen/Border. Struktur wie im Colors-Board.
+:root{
+  --color-primary:#0A84FF;      /* ersetzbar nach Style-Board */
+  --color-primary-hover:#0F6FE5;
+  --color-accent:#00C853;
+  --color-danger:#E53935;
+  --color-gray-0:#F5F7FA;
+  --color-gray-3:#D7DEE6;
+  --color-gray-6:#8A95A3;
+  --color-gray-9:#212529;
+  --radius:16px;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+Buttons: Primär (blau), Sekundär (grau), Danger (rot), Disabled-Zustände + Hover laut Buttons-Board.
+Formulare: klare Labels, Fokus-Ring in Primärfarbe, Success/Error-States wie Forms-Board.
+Tooltips: kleine, dunkle/helle Varianten wie Tooltips-Board.
+Splash/Intro: kleines quadratisches Visual links im Hero (Anmutung wie SplashScreen-Board).
+Kontrast & Lesbarkeit: große H1, großzügige Weißräume.
+Struktur (HTML-Skelett):
+header mit Logo-Platzhalter und „Kostenlos starten“ Anker.
+main
+section.hero (H1, Subline, Formular)
+section.benefits (3 Karten)
+section.process (3 Schritte, nummeriert)
+section.faq
+footer (Links/Legal).
+Sticky CTA-Button für Mobile, der zum Formular scrollt.
+Formular-Block (Beispiel – bitte ausprogrammieren):
+Felder mit IDs url und email.
+Button „Kostenlose Analyse starten“.
+Beim submit:
+fetch('https://trkmuc.app.n8n.cloud/webhook/data', {
+  method:'POST',
+  headers:{'Content-Type':'application/json','Auth':'s_AjvdzQMy7EMQM-'},
+  body:JSON.stringify({
+    url:document.getElementById('url').value.trim(),
+    email:document.getElementById('email').value.trim()
+  })
+})
+Ladezustand, Erfolg/Fehler anzeigen.
+Feinschliff:
+Accessibility: Labels, aria-live für Status, Tastaturfokus gut sichtbar.
+Saubere CSS-Variablen & Utility-Klassen für Spacing (8/16/24/32).
+Leichte Card-Shadows, abgerundete Ecken (--radius).
+Mobile-First, Breakpoints bei 768 px/1024 px.
+Keine externen Abhängigkeiten außer Google Fonts (Source Sans Pro).
+Lieferobjekte:
+index.html, styles.css, main.js (sauber kommentiert).
+Farben/Typo/Abstände als Tokens (leicht änderbar).
+README mit kurzer Anleitung (wo Webhook/Header geändert werden).
+Zielbild: moderne, ruhige B2B-Optik, klare CTA, schnelle Übergabe der zwei Felder an den Webhook.
