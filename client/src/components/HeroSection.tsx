@@ -25,11 +25,10 @@ export default function HeroSection() {
     setStatus('loading');
 
     try {
-      const response = await fetch('https://trkmuc.app.n8n.cloud/webhook/data', {
+      const response = await fetch('/api/submit-analysis', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Auth': 's_AjvdzQMy7EMQM-'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           url: url.trim(),
